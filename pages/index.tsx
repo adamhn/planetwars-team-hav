@@ -5,22 +5,22 @@ import styles from "../styles/Home.module.css";
 import { getAllPlanets } from "../utils/api";
 import { Planet } from "../utils/types";
 
-import Image from 'next/image'
+import Image from "next/image";
 
-import { CriticalButton } from '@gjensidige/nci-core-buttons/lib/critical-button';
-import { Title } from '@gjensidige/nci-core-typography/lib/title';
-import { Text } from '@gjensidige/nci-core-typography/lib/text';
-import { Container, Col, Row } from '@gjensidige/nci-core-grid/lib';
-import { Input } from '@gjensidige/nci-core-forms/lib/input';
-import { useState } from 'react';
+import { CriticalButton } from "@gjensidige/nci-core-buttons/lib/critical-button";
+import { Title } from "@gjensidige/nci-core-typography/lib/title";
+import { Text } from "@gjensidige/nci-core-typography/lib/text";
+import { Container, Col, Row } from "@gjensidige/nci-core-grid/lib";
+import { Input } from "@gjensidige/nci-core-forms/lib/input";
+import { useState } from "react";
+import PlanetItem from "../components/Planet";
 
 interface Props {
   planets: Planet[];
-
 }
 const Home: NextPage<Props> = ({ planets }) => {
   const [searchResults, setSearchResults] = useState([]);
-  const [searchInput, setSearchInput] = useState('');
+  const [searchInput, setSearchInput] = useState("");
 
   console.log("planets " + planets);
 
@@ -33,25 +33,24 @@ const Home: NextPage<Props> = ({ planets }) => {
       </Head>
       <main>
         <Container>
-          <Title tag="h1">
-            Planet wars
-          </Title>
+          <Title tag="h1">Planet wars</Title>
           <Row>
-            <Col xxs={6}>
+            <Col className={styles.searchWrapper} xxs={6}>
               <Input
                 id="search-id"
                 labelText="Search for planets"
                 name="search-name"
                 onChange={(event) => setSearchInput(event.currentTarget.value)}
-                value={searchInput} />
+                value={searchInput}
+              />
               <CriticalButton>Search</CriticalButton>
             </Col>
           </Row>
-          <Row>
-            <Col as="ul">
-
-            </Col>
-          </Row>
+          <div className={styles.planetsWrapper}>
+            {planets.map((planet) => (
+              <PlanetItem key={planet.id} planet={planet} />
+            ))}
+          </div>
         </Container>
       </main>
       <footer className={styles.footer}>
@@ -60,15 +59,15 @@ const Home: NextPage<Props> = ({ planets }) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
-}
+  );
+};
 // This gets called on every request
 export async function getServerSideProps() {
   // Fetch data from external API

@@ -127,3 +127,39 @@
     filter: invert(1);
   }
 }
+
+.planetsWrapper {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media screen and (max-width: 700px) {
+  .planetsWrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .planetsWrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .planetsWrapper {
+    grid-template-columns: 1fr;
+  }
+}
+
+.searchWrapper {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 40px;
+}
+
+.searchWrapper button {
+  height: 50px;
+  padding: 0px 20px;
+  margin-left: 20px;
+}

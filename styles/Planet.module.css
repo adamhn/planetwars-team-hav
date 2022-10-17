@@ -1,0 +1,12 @@
+.planetItem {
+  padding: 20px 40px;
+  box-shadow: 0px 0px 1.2px -4px rgba(0, 0, 0, 0.02),
+    0px 0px 2.8px -4px rgba(0, 0, 0, 0.028),
+    0px 0px 5.3px -4px rgba(0, 0, 0, 0.035),
+    0px 0px 9.4px -4px rgba(0, 0, 0, 0.042),
+    0px 0px 17.5px -4px rgba(0, 0, 0, 0.05),
+    0px 0px 42px -4px rgba(0, 0, 0, 0.07);
+
+  font-weight: bold;
+  text-align: center;
+}
