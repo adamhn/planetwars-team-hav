@@ -1,6 +1,7 @@
 import { Container, Col, Row } from '@gjensidige/nci-core-grid/lib';
 import { Title } from '@gjensidige/nci-core-typography/lib';
 import { Text } from '@gjensidige/nci-core-typography/lib';
+import { getAllPlanets } from '../utils/api';
 import { Planet } from "../utils/types";
 
 type Props = {
@@ -37,17 +38,30 @@ const StaticPropsDetail = ({ planet, errors }: Props) => {
 
 export default StaticPropsDetail
 
+
+
+
 export async function getStaticPaths() {
+
+    const data = await getAllPlanets()
+    const planets = data.data.allPlanets.planets as Planet[];
+    const paths = planets.map((planet) => ({
+        params: { id: planet.id },
+    }))
     return {
-        paths: [{ params: { id: '1' } }, { params: { id: '2' } }],
+        paths: paths,
         fallback: false, // can also be true or 'blocking'
     }
 }
 
+
+
+
 // `getStaticPaths` requires using `getStaticProps`
 export async function getStaticProps() {
+
     return {
         // Passed to the page component as props
-        props: { post: {} },
+        props: { planet: {} },
     }
 }
