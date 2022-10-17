@@ -9,4 +9,13 @@
 
   font-weight: bold;
   text-align: center;
+  transition: all 0.25s;
+  border-radius: 4px;
+  border: 1px solid #7d55ffba;
+}
+
+.planetItem:hover {
+  background-color: #7d55ff4f;
+  scale: 1.1;
+  border: 1px solid #7d55ff;
 }
