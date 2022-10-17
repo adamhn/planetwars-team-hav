@@ -20,16 +20,16 @@ const StaticPropsDetail = ({ planet, errors }: Props) => {
         )
     }
 
-    console.log("Planet " + planet);
+    console.log("Planet " + JSON.stringify(planet));
     return (
         <Container>
             <Row>
                 <Col xxs={{ span: 5, offset: 3 }}>
                     <Title tag="h1">Details</Title>
-                    <Text>Gravity: </Text>
-                    <Text>Population: </Text>
-                    <Text>Terrains: </Text>
-                    <Text>Diameter: </Text>
+                    <Text>Gravity: {planet?.gravity}</Text>
+                    <Text>Population: {planet?.population}</Text>
+                    <Text>Terrains: {planet?.terrains}</Text>
+                    <Text>Diameter: {planet?.diameter}</Text>
                 </Col>
             </Row>
         </Container>
@@ -37,8 +37,6 @@ const StaticPropsDetail = ({ planet, errors }: Props) => {
 }
 
 export default StaticPropsDetail
-
-
 
 
 export async function getStaticPaths() {
@@ -55,10 +53,9 @@ export async function getStaticPaths() {
 }
 
 
-
-
 // `getStaticPaths` requires using `getStaticProps`
 export async function getStaticProps() {
+
 
     return {
         // Passed to the page component as props
