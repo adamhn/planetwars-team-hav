@@ -19,6 +19,7 @@
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
+  margin-top: 40px;
 }
 
 .footer a {
@@ -162,4 +163,10 @@
   height: 50px;
   padding: 0px 20px !important;
   margin-left: 20px;
+}
+
+.notFoundTxt {
+  font-weight: bold;
+  text-align: center;
+  text-decoration: underline;
 }
