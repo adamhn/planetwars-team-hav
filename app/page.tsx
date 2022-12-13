@@ -1,5 +1,3 @@
-"use client"
-
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
@@ -28,38 +26,34 @@ async function getData() {
 
 const Home = async () => {
   const planets = await getData();
-  const [searchResults, setSearchResults] = useState<Planet[]>(planets);
-  const [searchInput, setSearchInput] = useState("");
-  const { width, height } = useWindowSize();
+  // const [searchResults, setSearchResults] = useState<Planet[]>(planets);
+  // const [searchInput, setSearchInput] = useState("");
+  // const { width, height } = useWindowSize();
 
-  useEffect(() => {
-    console.log(planets)
-  }, [planets])
+  // const onSearchChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const input = event.currentTarget.value;
+  //   setSearchInput(input);
 
-  const onSearchChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const input = event.currentTarget.value;
-    setSearchInput(input);
-
-    if (!input) {
-      setSearchResults(planets);
-    } else {
-      const filteredPlanets = planets.filter((p) =>
-        p.name.toLowerCase().includes(input.toLowerCase())
-      );
-      setSearchResults(filteredPlanets);
-    }
-  };
+  //   if (!input) {
+  //     setSearchResults(planets);
+  //   } else {
+  //     const filteredPlanets = planets.filter((p) =>
+  //       p.name.toLowerCase().includes(input.toLowerCase())
+  //     );
+  //     setSearchResults(filteredPlanets);
+  //   }
+  // };
 
   return (
     <>
-      {searchResults.length === 0 && (
+      {/* {searchResults.length === 0 && (
         <Confetti
           run={searchResults.length === 0}
           width={width}
           height={height}
           gravity={0.15}
         />
-      )}
+      )} */}
       <div className={styles.container}>
         <Head>
           <title>Create Next App</title>
@@ -70,7 +64,7 @@ const Home = async () => {
         <main>
           <Container>
             <Title tag="h1">Planet wars</Title>
-            <Row>
+            {/* <Row>
               <Col className={styles.searchWrapper} xxs={6}>
                 <Input
                   id="search-id"
@@ -80,13 +74,13 @@ const Home = async () => {
                   value={searchInput}
                 />
               </Col>
-            </Row>
+            </Row> */}
             <div className={styles.planetsWrapper}>
-              {searchResults.map((planet) => (
+              {planets.map((planet) => (
                 <PlanetItem key={planet.id} planet={planet} />
               ))}
             </div>
-            {searchResults.length === 0 && (
+            {planets.length === 0 && (
               <Text className={styles.notFoundTxt} size="h4">
                 You have found a not found planet.
               </Text>
@@ -107,19 +101,19 @@ const Home = async () => {
   );
 };
 // This gets called on every request
-export async function getServerSideProps() {
-  // Fetch data from external API
-  try {
-    console.log("test")
-    const data = await getAllPlanets();
-    const planets = data.data.allPlanets.planets as Planet[];
-    return { props: { planets } };
-  } catch (error) {
-    console.error("could not fetch planets", error);
-  }
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   try {
+//     console.log("test")
+//     const data = await getAllPlanets();
+//     const planets = data.data.allPlanets.planets as Planet[];
+//     return { props: { planets } };
+//   } catch (error) {
+//     console.error("could not fetch planets", error);
+//   }
 
-  // Pass data to the page via props
-  return { props: null };
-}
+//   // Pass data to the page via props
+//   return { props: null };
+// }
 
 export default Home;
