@@ -89,7 +89,7 @@ const Home: NextPage<Props> = ({ planets }) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Powered by Team Hav
+            Powered by Team D-Hav
           </a>
         </footer>
       </div>
