@@ -1,3 +1,5 @@
+"use client"
+
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
@@ -8,19 +10,31 @@ import { Title } from "@gjensidige/nci-core-typography/lib/title";
 import { Text } from "@gjensidige/nci-core-typography/lib/text";
 import { Container, Col, Row } from "@gjensidige/nci-core-grid/lib";
 import { Input } from "@gjensidige/nci-core-forms/lib/input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PlanetItem from "../components/Planet";
 import useWindowSize from "react-use/lib/useWindowSize";
 
 import Confetti from "react-confetti";
 
-interface Props {
-  planets: Planet[];
+async function getData() {
+  const data = await getAllPlanets();
+  const planets = data.data.allPlanets.planets as Planet[];
+  return planets;
 }
-const Home: NextPage<Props> = ({ planets }) => {
+
+// interface Props {
+//   planets: Planet[];
+// }
+
+const Home = async () => {
+  const planets = await getData();
   const [searchResults, setSearchResults] = useState<Planet[]>(planets);
   const [searchInput, setSearchInput] = useState("");
   const { width, height } = useWindowSize();
+
+  useEffect(() => {
+    console.log(planets)
+  }, [planets])
 
   const onSearchChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
     const input = event.currentTarget.value;
@@ -96,6 +110,7 @@ const Home: NextPage<Props> = ({ planets }) => {
 export async function getServerSideProps() {
   // Fetch data from external API
   try {
+    console.log("test")
     const data = await getAllPlanets();
     const planets = data.data.allPlanets.planets as Planet[];
     return { props: { planets } };
