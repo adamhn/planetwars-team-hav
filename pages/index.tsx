@@ -1,13 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import { useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import { getAllPlanets } from "../utils/api";
 import { Planet } from "../utils/types";
 
-import Image from "next/image";
-
-import { CriticalButton } from "@gjensidige/nci-core-buttons/lib/critical-button";
 import { Title } from "@gjensidige/nci-core-typography/lib/title";
 import { Text } from "@gjensidige/nci-core-typography/lib/text";
 import { Container, Col, Row } from "@gjensidige/nci-core-grid/lib";
